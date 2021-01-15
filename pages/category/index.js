@@ -1,4 +1,5 @@
 import { request } from "../../request/index.js";
+import regeneratorRuntime from '../../lib/runtime/runtime';
 
 Page({
     data: {
@@ -26,24 +27,19 @@ Page({
                 })
             }
         }
-
         this.getCates();
     },
-    getCates() {
-        request({
-            url: "/categories",
-        }).then(res => {
-            this.Cates = res.data.message;
-
-            // 将接口数据存入到本地存储中
-            wx.setStorageSync("cates", { time: Date.now(), data: this.Cates });
-            let leftMenuList = this.Cates.map(v => v.cat_name);
-            let rightContent = this.Cates[0].children
-            this.setData({
-                leftMenuList,
-                rightContent
-            })
+    async getCates() {
+        const res = await request({ url: "/categories" });
+        this.Cates = res;
+        wx.setStorageSync("cates", { time: Date.now(), data: this.Cates });
+        let leftMenuList = this.Cates.map(v => v.cat_name);
+        let rightContent = this.Cates[0].children
+        this.setData({
+            leftMenuList,
+            rightContent
         })
+
     },
     handleItemTap(e) {
         // 获取索引
@@ -55,7 +51,5 @@ Page({
             rightContent,
             scrollTop: 0,
         })
-
-
     }
 })

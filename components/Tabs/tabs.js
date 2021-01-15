@@ -16,16 +16,16 @@ Component({
    */
   data: {
   },
-  
   /**
    * 组件的方法列表
    */
   methods: {
     handleItemTap(e){
-      console.log(e);
+
       const {index}=e.currentTarget.dataset;
       // 触发父组件中自定义事件，同时传递数据给 父组件
-      this.triggerEvent("itemChange",{index})
+
+      this.triggerEvent("tabsItemChange",{index})
     },
     
   }

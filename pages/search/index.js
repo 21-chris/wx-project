@@ -1,66 +1,59 @@
-// pages/search/index.js
+import { request } from "../../request/index.js";
+import regeneratorRuntime from '../../lib/runtime/runtime';
+// 防抖，定义一个定时器
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        goods: [],
+        isFocus: false,
+        inputValue: ""
+    },
+    TimeId: -1,
 
-  },
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function(options) {
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+    },
+    handleInput(e) {
 
-  },
+        const { value } = e.detail;
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+        // 检测合法性
+        if (!value) {
+            this.setData({
+                goods: [],
+                isFocus: false
 
-  },
+            })
+            return;
+        }
+        this.setData({
+            isFocus: true
+        })
+        clearTimeout(this.TimeId);
+        this.TimeId = setTimeout(() => {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+        }, 1000)
+        this.qsearch(value)
+    },
+    async qsearch(query) {
+        const res = await request({ url: "/goods/search", data: { query } })
+        this.setData({
+            goods: res.goods
+        })
 
-  },
+    },
+    handleCancel() {
+        this.setData({
+            inputValue: "",
+            isFocus: false,
+            goods: []
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+        })
+    }
 })

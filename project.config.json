@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -62,14 +62,21 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/cate/index",
-          "pathName": "pages/cate/index",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "pages/category/index",
-          "pathName": "pages/category/index",
+          "name": "反馈",
+          "pathName": "pages/feedback/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "搜索中心",
+          "pathName": "pages/search/index",
+          "query": "",
           "scene": null
         }
       ]

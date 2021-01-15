@@ -1,3 +1,4 @@
 <view class="search_input">
-  <navigator class="navigator">搜索</navigator>
+	<navigator class="navigator" url="/pages/search/index">搜索</navigator>
 </view>
+
