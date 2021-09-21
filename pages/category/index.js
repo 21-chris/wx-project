@@ -1,5 +1,4 @@
 import { request } from "../../request/index.js";
-import regeneratorRuntime from '../../lib/runtime/runtime';
 
 Page({
     data: {
@@ -7,9 +6,13 @@ Page({
         rightContent: [],
         currentIndex: 0,
         scrollTop: 0,
+        statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
+        pb: 150,
+
     },
     Cates: [],
     onLoad: function(option) {
+
         // 获取本地存储的数据
         const Cates = wx.getStorageSync("cates")
         if (!Cates) {
@@ -27,7 +30,7 @@ Page({
                 })
             }
         }
-        this.getCates();
+  
     },
     async getCates() {
         const res = await request({ url: "/categories" });
@@ -41,10 +44,13 @@ Page({
         })
 
     },
+   
     handleItemTap(e) {
+        
         // 获取索引
         // 给data中的currentIndex
         const { index } = e.currentTarget.dataset;
+        console.log('e',e)
         let rightContent = this.Cates[index].children
         this.setData({
             currentIndex: index,

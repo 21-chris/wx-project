@@ -1,6 +1,46 @@
 page {
   height: 100%;
+  position: relative;
 }
+
+/* 自定义导航栏开始 */
+.custom{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 150rpx;
+  background: #0cac49;
+  z-index: 100;
+}
+
+.navInput{
+  margin: 15rpx 0;
+  height: 60rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 60rpx;
+}
+
+
+.custom text{
+  display: inline-block;
+  color: #fff;
+  font-size: 34rpx;
+  font-weight: 500;
+  max-width: 280rpx;
+
+}
+.empty_custom{
+  height: 45px;
+  width: 100%;
+}
+/* 自定义导航栏结束 */
+
+
+
+
 .cates {
   height: 100%;
 }
